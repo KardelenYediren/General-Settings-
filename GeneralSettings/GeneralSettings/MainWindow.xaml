@@ -1,0 +1,141 @@
+﻿<Window x:Class="GeneralSettings.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GeneralSettings"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="600"
+        Width="500"
+        MinWidth="445"
+        MinHeight="180"
+        WindowStyle="None"
+        ResizeMode="CanResizeWithGrip"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown">
+
+    <!-- Ana Grid, tek bir sütun tanımı -->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Ana Border, köşeleri yuvarlatılmış arka plan -->
+        <Border Background="#272637" CornerRadius="20" Grid.ColumnSpan="1">
+            <Grid>
+                <!-- İç Grid'in kolon tanımları -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <!-- Sol kolon, sabit genişlik -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Orta kolon, esnek genişlik -->
+                    <ColumnDefinition Width="100"/>
+                    <!-- Sağ kolon, sabit genişlik -->
+                </Grid.ColumnDefinitions>
+
+                <!-- İç Grid'in satır tanımları -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <!-- Üst satır, sabit yükseklik -->
+                    <RowDefinition Height="*"/>
+                    <!-- Orta satır, esnek yükseklik -->
+                    <RowDefinition Height="50"/>
+                    <!-- Alt satır, sabit yükseklik -->
+                </Grid.RowDefinitions>
+
+                <!-- Üst satır arka plan ve köşe yuvarlama -->
+                <Border Grid.ColumnSpan="3" Background="#252525" CornerRadius="20,20,0,0"/>
+
+                <!-- Başlık etiketi -->
+                <Label Content="  General Settings"
+                       Foreground="Gray"
+                       FontWeight="SemiBold"
+                       Grid.Row="0"
+                       Grid.Column="0" 
+                       Height="30" 
+                       VerticalAlignment="Top" 
+                       Grid.RowSpan="2" 
+                       Grid.ColumnSpan="2" 
+                       Margin="0,0,289,0"/>
+
+                <!-- Pencere kontrol butonları (simge durumuna küçültme, büyütme/küçültme, kapatma) -->
+                <StackPanel HorizontalAlignment="Center"
+                            Orientation="Horizontal"
+                            Grid.Row="0"
+                            Grid.Column="2">
+                    <!-- Simge durumuna küçültme butonu -->
+                    <Button Width="25" Height="25"
+                            Content="_"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Margin="0,0,0,5"
+                            Click="ButtonMinimize_Click"/>
+
+                    <!-- Pencereyi büyütme/küçültme butonu -->
+                    <Button Width="30" Height="28"
+                            Content="□"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Click="WindowStateButton_Click"/>
+
+                    <!-- Pencereyi kapatma butonu -->
+                    <Button Width="30" Height="20"
+                            Content="❌"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Click="CloseButton_Click"/>
+                </StackPanel>
+
+                <!-- Ayarlar için TabControl -->
+                <TabControl Grid.Row="1" Grid.ColumnSpan="3" Margin="10">
+                    <!-- Grafik Ayarları Sekmesi -->
+                    <TabItem Header="Graphic Settings">
+                        <StackPanel Margin="10">
+                            <!-- Grafik ayarları açıklama metinleri ve seçenekleri -->
+                            <TextBlock Text="Graphics Setting" FontWeight="Bold" FontSize="14" TextWrapping="Wrap" TextAlignment="Justify"/>
+                            <TextBlock Text="Note: Changing the graphics setting does not take effect until AutoCase is restarted." Margin="0,10,0,20" TextWrapping="Wrap" TextAlignment="Justify"/>
+
+                            <!-- Grafik ayarları için radyo butonları -->
+                            <RadioButton GroupName="GraphicsSetting" Content="Quality" Margin="0,0,0,10"/>
+                            <TextBlock Text="Use this setting for the highest quality realistic visualization." Margin="20,0,0,10" TextWrapping="Wrap" TextAlignment="Justify"/>
+
+                            <RadioButton GroupName="GraphicsSetting" Content="Performance" IsChecked="True" Margin="0,0,0,10"/>
+                            <TextBlock Text="Use this setting when performance is desired over realistic visualization such as in modeling." Margin="20,0,0,10" TextWrapping="Wrap" TextAlignment="Justify"/>
+
+                            <RadioButton GroupName="GraphicsSetting" Content="Conservative" Margin="0,0,0,10"/>
+                            <TextBlock Text="Use this setting for conservative graphics hardware use with" Margin="20,0,0,10" TextWrapping="Wrap" TextAlignment="Justify"/>
+
+                            <CheckBox Content="Software graphics" Margin="0,0,0,10"/>
+                            <TextBlock Text="Use only for systems with unrecognized graphics hardware or when graphics hardware does not support desired functionality." Margin="20,0,0,10" TextWrapping="Wrap" TextAlignment="Justify"/>
+                        </StackPanel>
+                    </TabItem>
+
+                    <!-- Diğer ayar sekmeleri -->
+                    <TabItem Header="Display"/>
+                    <TabItem Header="Project Settings"/>
+                    <TabItem Header="Quotation Settings"/>
+                    <TabItem Header="Visibility"/>
+                    <TabItem Header="Outputs"/>
+                </TabControl>
+
+                <!-- Alt kısımdaki butonlar -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2" Grid.ColumnSpan="3" Margin="10">
+                    <!-- Dışa aktarım ve uygulama butonları -->
+                    <Button Content="Import..." Width="75" Margin="5"/>
+                    <Button Content="Export..." Width="75" Margin="5"/>
+                    <Button Content="OK" Width="75" Margin="5"/>
+                    <Button Content="Cancel" Width="75" Margin="5"/>
+                    <Button Content="Apply" Width="75" Margin="5"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
